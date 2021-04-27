@@ -1,7 +1,7 @@
 const app = Object.freeze({
   description: 'tsuxのホームページです。',
-  name: 'tsux',
-  title: 'tsux'
+  name: 'tsux.me',
+  title: 'tsux.me'
 })
 
 const layouts = Object.freeze({
@@ -23,10 +23,10 @@ const pages = Object.freeze({
 
 const components = Object.freeze({
   navigationmenu: Object.freeze({
-    sitetitle: 'tsux'
+    sitetitle: 'tsux.me'
   }),
   appbar: Object.freeze({
-    sitetitle: 'tsux'
+    sitetitle: 'tsux.me'
   })
 })
 

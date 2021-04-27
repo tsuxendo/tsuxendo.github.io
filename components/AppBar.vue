@@ -1,0 +1,13 @@
+<template>
+  <v-app-bar
+    app
+    color="transparent"
+    fixed
+    flat
+  >
+    <v-app-bar-nav-icon
+      class="secondary--text"
+      @click="$emit('click:menu')"
+    />
+  </v-app-bar>
+</template>

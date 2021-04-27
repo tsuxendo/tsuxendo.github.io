@@ -1,0 +1,35 @@
+name: deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+    - uses: actions/checkout@master
+    - uses: actions/setup-node@master
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm install
+    - run: npm run generate
+      env:
+        VERSION: '${{ secrets.VERSION }}'
+        SLACK_API_URL: '${{ secrets.SLACK_API_URL }}'
+        API_KEY: '${{ secrets.API_KEY }}'
+        AUTH_DOMAIN: '${{ secrets.AUTH_DOMAIN }}'
+        PROJECT_ID: '${{ secrets.PROJECT_ID }}'
+        STORAGE_BACKET: '${{ secrets.STORAGE_BACKET }}'
+        MESSAGING_SENDER_ID: '${{ secrets.MESSAGING_SENDER_ID }}'
+        APP_ID: '${{ secrets.APP_ID }}'
+        MEASUREMENT_ID: '${{ secrets.MEASUREMENT_ID }}'
+    - uses: w9jds/firebase-action@master
+      with:
+        args: deploy
+      env:
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
